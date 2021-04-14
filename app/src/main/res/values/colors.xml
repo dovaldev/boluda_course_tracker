@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="boluda_blue">#428BCA</color>
+    <color name="boluda_blue_variant">#2579C1</color>
+    <color name="boluda_blue_mark">#5FA6E3</color>
+    <color name="boluda_blue_dark">#FFFFFF</color>
+    <color name="boluda_gray">#32373C</color>
+    <color name="boluda_ligth">#ECECEC</color>
+    <color name="boluda_red">#CA0F1D</color>
+</resources>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Boluda Course Tracker</string>
+    <string name="boluda_com">BOLUDA.COM</string>
+    <string name="developed_by_dovaldev_com">Developed by DovalDev.com</string>
+    <string name="content_description_media">Imagen en tarjeta</string>
+    <string name="title">Titulo Tarjeta</string>
+    <string name="secondary_text">Texto de la tarjeta</string>
+    <string name="supporting_text">Información adicional de la tarjeta</string>
+    <string name="action_1">Ver</string>
+    <string name="menu_recargar_cursos">Recargar Cursos</string>
+    <string name="menu_buscar">Buscar</string>
+    <string name="dialog_realizando_una_accion">Realizando una acción</string>
+    <string name="dialog_msg_instalando_los_cursos">Instalando los cursos…</string>
+    <string name="dialog_msg_instalando_los_cursos_title">Hola, estamos…</string>
+    <string name="dialog_msg_descargando_los_cursos">Descargando, instalando y actualizando los cursos, se que el tiempo es dinero pero tendrás que esperar…</string>
+    <string name="dialog_msg_descargando_los_cursos_title">Hola, estamos…</string>
+    <string name="action_2">Marcar Visto</string>
+    <string name="menu_intranet">Intranet</string>
+    <string name="chapter_watched_yes">VISTO</string>
+    <string name="chapter_watched_no">NO VISTO</string>
+    <string name="menu_cursos_favoritos">Cursos favoritos</string>
+</resources>
