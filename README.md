@@ -29,10 +29,10 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <p>El proyecto está realizado con mis conocimientos limitados de programación en Kotlin, usando código desarrollado por mi a lo largo de los años. Quizá encuentres alguna mejor forma de hacer algo, puedes contribuir si lo deseas.</p>
 
 <!-- INSTALL -->
-<p>Si quereis usarla e instalarla, teneis dos posibilidades:</p>
+<p>Si quieres usarla e instalarla, tienes dos posibilidades:</p>
 <ul>
   <li>Instalarla mediante el enlace de <a href="https://github.com/dovaldev/boluda_course_tracker/tree/master/app/release">descarga</a>, activando la opción de origenes desconocidos.</li>
-  <li>Descargar el proyecto en android studio y compilarla por vostros mismos.</li>
+  <li>Descargar el proyecto en android studio y compilarla por ti mismo.</li>
 </ul>
 
 
@@ -47,7 +47,27 @@ He realizado este proyecto con android studio y kotlin como lenguaje de programa
 <!-- LICENSE -->
 ## License
 
-<p>No está permitida la copia/modificación para uso comercial</p>
+MIT License
+
+Copyright (c) 2021 Juan A. Doval
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
   
   <!-- MARKDOWN LINKS & IMAGES -->
