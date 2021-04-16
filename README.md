@@ -3,6 +3,22 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 
 <p>Aplicación desarrollada por <a href="https://dovaldev.com"><strong>dovaldev</strong></a> para marcar todos los cursos vistos y favoritos de la web de <a href="https://boluda.com">boluda.com</a>
   
+  <!-- DOVALDEV -->
+  <p align="center">
+  
+  <h3 align="center">dovaldev</h3>
+
+  <p align="center">
+    Puedes encontrame en @dovaldev
+    <br />
+    <a href="https://dovaldev.com"><strong>WEB</strong></a>
+    <br />
+    <br />
+    <a href="https://twitter.com/dovaldev">Twitter</a>
+    ·
+    <a href="https://github.com/dovaldev">GitHub</a>
+  </p>
+</p>
   
   
 <!-- ABOUT THE PROJECT -->
