@@ -31,7 +31,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <!-- INSTALL -->
 <p>Si quereis usarla e instalarla, teneis dos posibilidades:</p>
 <ul>
-  <li>Instalarla mediante el enlace de descarga, activando la opción de origenes desconocidos.</li>
+  <li>Instalarla mediante el enlace de <a href="https://github.com/dovaldev/boluda_course_tracker/tree/master/app/release">descarga</a>, activando la opción de origenes desconocidos.</li>
   <li>Descargar el proyecto en android studio y compilarla por vostros mismos.</li>
 </ul>
 
