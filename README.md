@@ -49,7 +49,7 @@ He realizado este proyecto con android studio y kotlin como lenguaje de programa
 
 MIT License
 
-Copyright (c) 2021 Juan A. Doval
+Copyright (c) 2021 Juan A. Doval [@dovaldev]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
