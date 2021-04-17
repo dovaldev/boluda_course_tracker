@@ -71,7 +71,7 @@ SOFTWARE.
 
   
   <!-- MARKDOWN LINKS & IMAGES -->
-  [product-screenshot]: screenshot-fav.png
+  [product-screenshot]: images/screenshot-fav.png
   [dovaldev-url]: https://dovaldev.com
   [boluda-url]: https://boluda.com
   [app-url]: https://boluda.com
