@@ -54,7 +54,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 
 He realizado este proyecto con android studio y kotlin como lenguaje de programación.
 * [Kotlin-android](https://kotlinlang.org/)
-* [Libreria JSOUP-android]()
+* [Libreria JSOUP-android](#)
 
 
 <!-- LICENSE -->
