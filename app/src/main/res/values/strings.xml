@@ -7,8 +7,8 @@
     <string name="secondary_text">Texto de la tarjeta</string>
     <string name="supporting_text">Información adicional de la tarjeta</string>
     <string name="action_1">Ver</string>
-    <string name="menu_recargar_cursos">Recargar Cursos</string>
-    <string name="menu_recargar_cursos_v2">Recargar Cursos Rápido</string>
+    <string name="menu_recargar_cursos">Instalar Cursos-OP2</string>
+    <string name="menu_recargar_cursos_v2">Instalar Cursos</string>
     <string name="menu_buscar">Buscar</string>
     <string name="dialog_realizando_una_accion">Realizando una acción</string>
     <string name="dialog_msg_instalando_los_cursos">Instalando los cursos…</string>
@@ -21,4 +21,15 @@
     <string name="chapter_watched_no">NO VISTO</string>
     <string name="menu_cursos_favoritos">Cursos favoritos</string>
     <string name="curse_chapter_course_name">Course Name</string>
+    <string name="action_bar_search">Buscar un curso</string>
+    <string name="dialog_obtaining">Obteniendo</string>
+    <string name="dialog_obtaining_msg">Información de la base de datos, favoritos y capítulos vistos...</string>
+    <string name="dialog_updating">Actualizando</string>
+    <string name="dialog_updating_msg">Información de la base de datos, favoritos y capítulos vistos...</string>
+    <string name="toast_all_data_updated">Todos los datos se han actualizado correctamente...</string>
+    <string name="dialog_msg_install">¿Quieres instalar y/o actualizar los cursos?</string>
+    <string name="dialog_msg_install_ok">Instalar</string>
+    <string name="dialog_msg_install_cancel">Cancelar</string>
+    <string name="course_list_lista_completa">Lista Completa</string>
+    <string name="course_list_lista_fav">Lista Favoritos</string>
 </resources>

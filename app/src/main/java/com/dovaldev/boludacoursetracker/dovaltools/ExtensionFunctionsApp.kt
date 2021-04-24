@@ -25,27 +25,29 @@ inline fun <reified T : Activity> Activity.goToActivity(noinline init: Intent.()
 inline fun <reified T: Any> Context.intentFor(vararg params: Pair<String, Any?>): Intent =
     Internals.createIntent(this, T::class.java, params)
 
+// null checker
+fun Any?.notNull(f: ()-> Unit){
+    if (this != null){
+        f()
+    }
+}
 
 // Dialogs
 // install courses
-fun Activity.dialogInstallCourses() {
+fun Activity.dialogInstallCourses(function: () ->(Unit)) {
     with(this) {
         val builder = AlertDialog.Builder(this)
         builder.setMessage(
-            "¿Quieres instalar y/o actualizar los cursos?"
+            getString(R.string.dialog_msg_install)
         )
-            .setPositiveButton("Instalar") { _, _ ->
-                val d = dialogInstallingDatabase()
-                d.show()
-                doAsync {
-                    uiThread { d.cancel() }
-                }
+            .setPositiveButton(getString(R.string.dialog_msg_install_ok)) { _, _ ->
+               function()
             }
-            .setNegativeButton("Cancelar") { dialog, _ ->
+            .setNegativeButton(getString(R.string.dialog_msg_install_cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
         // Create the AlertDialog object and return it
-        builder.create()
+        builder.create().show()
     }
 }
 

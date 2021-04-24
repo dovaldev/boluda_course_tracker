@@ -10,9 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dovaldev.boludacoursetracker.R
 import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
-import com.dovaldev.boludacoursetracker.dovaltools.doAsync
+import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
 import com.dovaldev.boludacoursetracker.dovaltools.loadGlide
-import com.dovaldev.boludacoursetracker.dovaltools.uiThread
+import com.dovaldev.boludacoursetracker.dovaltools.anko.uiThread
 
 class CoursesListAdapter internal constructor(
     var context: Context,

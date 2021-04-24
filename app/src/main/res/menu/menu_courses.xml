@@ -19,11 +19,13 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/action_reload_courses"
-        android:title="@string/menu_recargar_cursos"
-        app:showAsAction="never"/>
-    <item
         android:id="@+id/action_reload_courses_v2"
         android:title="@string/menu_recargar_cursos_v2"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_reload_courses"
+        android:title="@string/menu_recargar_cursos"
+        app:showAsAction="never"/>
+
 </menu>

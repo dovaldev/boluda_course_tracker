@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +20,9 @@ import com.dovaldev.boludacoursetracker.database.tools.Downloader
 import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
 import com.dovaldev.boludacoursetracker.database.tools.databaseInstaller
 import com.dovaldev.boludacoursetracker.dovaltools.*
-import com.dovaldev.boludacoursetracker.onlinegetter.JsoupGetter
+import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
+import kotlinx.android.synthetic.main.activity_course_chapter_list.*
+import kotlinx.android.synthetic.main.activity_course_list.*
 
 /* This activity show the courses list */
 class CourseListActivity : AppCompatActivity() {
@@ -36,6 +37,9 @@ class CourseListActivity : AppCompatActivity() {
         // load viewmodel
         courseViewModel = ViewModelProvider(this).get(CoursesViewModel::class.java)
 
+        // check if the courses are installed
+        databaseInstaller(this@CourseListActivity).checkIfIsEmpty(courseViewModel)
+
         // load the list of all courses
         loadDownloadedCourses(fav)
 
@@ -43,11 +47,18 @@ class CourseListActivity : AppCompatActivity() {
 
     // the courses are loaded into the adapter
     private fun loadDownloadedCourses(fav: Boolean) {
+        // set favourite or full list message
+        when(fav){
+            true -> tvListTitle.text = getString(R.string.course_list_lista_fav)
+            false -> tvListTitle.text = getString(R.string.course_list_lista_completa)
+        }
+
+        // load the recycler and show in adapter
         val recyclerView = findViewById<RecyclerView>(R.id.courseRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = CoursesListAdapter(this, object : CoursesListAdapterListener {
             override fun onClick(coursesEntity: CoursesEntity, position: Int) {
-                Log.i("load", "course-> ${coursesEntity.nombreCurso}")
+                //Log.i("load", "course-> ${coursesEntity.nombreCurso}")
                 startActivity(intentFor<CourseChapterListActivity>(
                     course to coursesEntity.URLCurso,
                     courseTitle to coursesEntity.nombreCurso
@@ -94,16 +105,16 @@ class CourseListActivity : AppCompatActivity() {
             val searchView = searchItem.actionView as SearchView
             val editext = searchView.findViewById<EditText>(R.id.search_src_text)
 
-            editext.hint = "Buscar un curso"
+            editext.hint = getString(R.string.action_bar_search)
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    Log.i("onQueryTextSubmit", query)
+                    //Log.i("onQueryTextSubmit", query)
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    Log.i("onQueryTextChange", newText?:"no text")
+                    //Log.i("onQueryTextChange", newText?:"no text")
                     if (newText!!.isNotEmpty()) {
                         courseViewModel.get(newText)
                     } else {
@@ -132,17 +143,25 @@ class CourseListActivity : AppCompatActivity() {
                 true
             }
 
-            // install courses with version 1 (more slow)
-            R.id.action_reload_courses -> {
-                Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCourses()
+            // install courses with version 2 (more fast-testing)
+            R.id.action_reload_courses_v2 -> {
+                dialogInstallCourses {
+                    Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCoursesV2()
+                }
+
                 true
             }
 
-            // install courses with version 2 (more fast-testing)
-            R.id.action_reload_courses_v2 -> {
-                Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCoursesV2()
+            // install courses with version 1 (more slow)
+            R.id.action_reload_courses -> {
+                dialogInstallCourses {
+                    Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCourses()
+                }
+
                 true
             }
+
+
 
             else -> super.onOptionsItemSelected(item)
         }

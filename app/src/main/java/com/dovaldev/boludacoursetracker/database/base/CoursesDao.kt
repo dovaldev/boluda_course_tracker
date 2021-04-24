@@ -61,6 +61,11 @@ interface CoursesDao{
     @Query ("SELECT count(*) from cursos_table")
     fun getTotalRows(): Long
 
+    // get first row
+    @Query ("SELECT count(*) from cursos_table ORDER BY ROWID ASC LIMIT 1")
+    fun getFirstRow(): Long
+
+
 
     // Insert items
     @Insert

@@ -21,6 +21,7 @@
 
 
     <TextView
+        android:id="@+id/tvDeveloped"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/developed_by_dovaldev_com"

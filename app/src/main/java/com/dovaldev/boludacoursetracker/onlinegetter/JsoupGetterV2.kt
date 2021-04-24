@@ -22,7 +22,7 @@ class JsoupGetterV2(var a: Activity? = null, var c: Context? = null) {
     }
 
     fun getCourseList(url: String): List<CoursesEntity> {
-        Log.i("getCourseList", "Start--> $url")
+        //Log.i("getCourseList", "Start--> $url")
         // cargar policy para evitar que se suspenda la app mientras esta ejecutandose.
         loadPolicy()
 
@@ -80,7 +80,7 @@ class JsoupGetterV2(var a: Activity? = null, var c: Context? = null) {
     }
 
     fun getCourseListImageInfo(url: String): List<CoursesEntity> {
-        Log.i("getCourseList", "Start--> $url")
+        //Log.i("getCourseList", "Start--> $url")
         // cargar policy para evitar que se suspenda la app mientras esta ejecutandose.
         loadPolicy()
 
@@ -93,7 +93,7 @@ class JsoupGetterV2(var a: Activity? = null, var c: Context? = null) {
                 .ignoreHttpErrors(true)
                 .get()
             /* geticon */
-            Log.i("loadURLJsoupGetter", url)
+            //Log.i("loadURLJsoupGetter", url)
 
             val courseEntry: Elements? = document.select("div.cursosgrid a")
 

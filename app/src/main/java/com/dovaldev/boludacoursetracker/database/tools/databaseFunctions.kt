@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesRoomDatabase
-import com.dovaldev.boludacoursetracker.dovaltools.doAsync
+import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
 
 class databaseFunctions(c: Context) {
 
@@ -12,7 +12,7 @@ class databaseFunctions(c: Context) {
 
     // when you click on chapter viewed is marked with a line ------
     fun onClickChapterView(entity: CoursesEntity) {
-        Log.i("captitulo-visto", "${entity.capituloVisto}")
+        //Log.i("captitulo-visto", "${entity.capituloVisto}")
         doAsync {
             val newEntity = entity
 
@@ -21,7 +21,7 @@ class databaseFunctions(c: Context) {
                 else -> { newEntity.capituloVisto = true }
             }
             coursesDao.update(newEntity)
-            Log.i("captitulo-visto", "${entity.capituloVisto} - ${newEntity.capituloVisto}")
+            //Log.i("captitulo-visto", "${entity.capituloVisto} - ${newEntity.capituloVisto}")
         }
     }
 

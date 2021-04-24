@@ -35,7 +35,7 @@ class JsoupGetter(var a: Activity? = null, var c: Context? = null) {
                 .ignoreHttpErrors(true)
                 .get()
             /* geticon */
-            Log.i("loadURLJsoupGetter", url)
+            //Log.i("loadURLJsoupGetter", url)
 
             val courseEntry: Elements? = document.select("div.cursosgrid a")
 
@@ -51,7 +51,7 @@ class JsoupGetter(var a: Activity? = null, var c: Context? = null) {
                         databaseInstaller(a!!).directInstallInDatabase(course)
                     }
                     //coursesList.add(course)
-                    Log.i("courseEntry", "$tituloCurso | $infoCurso | $imgCurso | #${index+1} ->${chaptersEntity.nombreCapitulo} |--> $urlCurso")
+                    //Log.i("courseEntry", "$tituloCurso | $infoCurso | $imgCurso | #${index+1} ->${chaptersEntity.nombreCapitulo} |--> $urlCurso")
                 }
 
 
@@ -67,7 +67,7 @@ class JsoupGetter(var a: Activity? = null, var c: Context? = null) {
     }
 
     private fun getCourseChaptersList(url: String): List<ChaptersEntity> {
-        Log.i("getCourseChaptersList", "Start--> $url")
+        //Log.i("getCourseChaptersList", "Start--> $url")
 
         val chaptersList = mutableListOf<ChaptersEntity>()
 
@@ -78,14 +78,14 @@ class JsoupGetter(var a: Activity? = null, var c: Context? = null) {
                 .ignoreHttpErrors(true)
                 .get()
             /* geticon */
-            Log.i("loadURLJsoupGetter", url)
+            //Log.i("loadURLJsoupGetter", url)
 
             val courseEntry: Elements? = document.select("ul.capitulos li a")
 
             for(element in courseEntry!!){
                 val urlChapter = element.attr("href").toString()
                 val tituloChapter = element.text()
-                Log.i("courseEntry", "$tituloChapter |--> $urlChapter")
+                //Log.i("courseEntry", "$tituloChapter |--> $urlChapter")
                 chaptersList.add(ChaptersEntity(tituloChapter, urlChapter))
             }
 
