@@ -60,6 +60,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <ul>
     <li>La app no comprueba el estado de la red, si intentas instalar sin tener internet, puede que no descargue nada o dé algún error.</li>
     <li>El adapter para mostrar cada tarjeta de curso, no está optimizado.</li>
+    <li>Con tiempo actualizaré la app con los últimos repositorios.</li>
     <li>Algunas cosas mas...</li>
 </ul>
 
