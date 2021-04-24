@@ -6,42 +6,16 @@ import com.dovaldev.boludacoursetracker.database.backup.SavedCoursesEntity
 import com.dovaldev.boludacoursetracker.database.backup.SavedCoursesRoomDatabase
 import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesRoomDatabase
-import com.dovaldev.boludacoursetracker.dovaltools.doAsync
 
-class databaseInstaller(var c: Context) {
+class databaseInstaller(c: Context) {
 
     private val coursesDao = CoursesRoomDatabase.getDatabase(c).coursesDao()
     private val savedCoursesDao = SavedCoursesRoomDatabase.getDatabase(c).coursesDao()
 
-    // install database after download
-    /* Not used function...
-    private fun installInDatabase(list: List<CoursesEntity>) {
-        if (list.isNotEmpty()) {
-            for (item in list) {
-                if (installIfNotExist(item)) {
-                    coursesDao.insert(item)
-                    Log.i("installing", "${item.nombreCurso} | ${item.capituloCurso}")
-                } else {
-                    Log.i("installing", "This item exist")
-                }
-            }
-        }
-    }
-    */
-
-    // check if the row exist
-    /* Not used function...
-    private fun installIfNotExist(item: CoursesEntity): Boolean {
-        val actualList = coursesDao.all_nolive
-        if (actualList.contains(item)) {
-            return false
-        }
-        return true
-    }
-    */
 
 
-    fun afterInstall(){
+    // before install
+    fun beforeInstall(){
        createBackupViewedAndFav()
     }
 
@@ -60,7 +34,8 @@ class databaseInstaller(var c: Context) {
         }
     }
 
-    fun beforeInstall(){
+    // update the favs and chapters viewed
+    fun afterInstall(){
         updateFromBackupViewedAndFav()
     }
 
@@ -72,11 +47,22 @@ class databaseInstaller(var c: Context) {
         for(savedItem in backupList){
             val curso = coursesDao.getChapter(savedItem.captituloCursoURL)
             if(curso.isNotEmpty()){
-                val chapterEntity = curso.get(1)
+
+                val chapterEntity = curso.get(0)
                 chapterEntity.capituloVisto = savedItem.capituloVisto
                 chapterEntity.cursoFavorito = savedItem.cursoFavorito
                 coursesDao.update(chapterEntity)
             }
+        }
+    }
+
+    // find equals course and update image and indfo
+    fun installImagesAndInfo(basicEntity: CoursesEntity){
+        val curso = coursesDao.getUrlCursoNoLive(basicEntity.URLCurso)
+        curso.forEach {
+            it.imgCurso = basicEntity.imgCurso
+            it.infoCurso = basicEntity.infoCurso
+            directUpdateInDatabase(it)
         }
     }
 
@@ -85,5 +71,11 @@ class databaseInstaller(var c: Context) {
     fun directInstallInDatabase(course: CoursesEntity) {
         coursesDao.insert(course)
         Log.i("installing", "${course.nombreCurso} | ${course.capituloCurso}")
+    }
+
+    // update the database while is beein downloaded
+    fun directUpdateInDatabase(course: CoursesEntity){
+        Log.i("updating-course", "${course.nombreCurso} -  ${course.imgCurso}")
+        coursesDao.update(course)
     }
 }

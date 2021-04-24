@@ -6,10 +6,11 @@ import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesRoomDatabase
 import com.dovaldev.boludacoursetracker.dovaltools.doAsync
 
-class databaseFunctions(var c: Context) {
+class databaseFunctions(c: Context) {
 
     private val coursesDao = CoursesRoomDatabase.getDatabase(c).coursesDao()
 
+    // when you click on chapter viewed is marked with a line ------
     fun onClickChapterView(entity: CoursesEntity) {
         Log.i("captitulo-visto", "${entity.capituloVisto}")
         doAsync {
@@ -25,7 +26,8 @@ class databaseFunctions(var c: Context) {
     }
 
 
-    fun onClickCourseFavorito(entity: CoursesEntity){
+    // dont used function
+    fun onClickCourseFavorite(entity: CoursesEntity){
         when(entity.cursoFavorito){
             true -> {
                 setCursoNoFavorito(entity)
@@ -36,6 +38,7 @@ class databaseFunctions(var c: Context) {
         }
     }
 
+    // when you click on view the course all chapters will apears as viewed
     fun setCursoVisto(entity: CoursesEntity) {
         val list = coursesDao.getCursoChapter_nolive(entity.URLCurso)
         var cursoVisto = true

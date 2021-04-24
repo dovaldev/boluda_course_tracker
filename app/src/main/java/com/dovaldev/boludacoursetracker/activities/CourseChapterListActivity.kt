@@ -14,19 +14,30 @@ import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapterListener
 import com.dovaldev.boludacoursetracker.database.base.CoursesViewModel
 import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
 import com.dovaldev.boludacoursetracker.dovaltools.*
+import kotlinx.android.synthetic.main.activity_course_chapter_list.*
 
+/* This activity show the chapter list of each course */
 class CourseChapterListActivity : AppCompatActivity() {
 
     private lateinit var courseViewModel: CoursesViewModel
     private lateinit var course2load: String
+    private lateinit var courseTitle2load: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_course_list)
+        setContentView(R.layout.activity_course_chapter_list)
 
         // load course selected
-        val list: String? = intent.getStringExtra(course)
-        list?.let { course2load = it }
+        val urlCourse: String? = intent.getStringExtra(course)
+        urlCourse?.let { course2load = it }
+
+        // load course selected
+        val titleCourse: String? = intent.getStringExtra(courseTitle)
+        titleCourse?.let { courseTitle2load = it }
+
+        // set title
+        tvCourseTitle.text = courseTitle2load
+
 
         // load viewmodel
         courseViewModel = ViewModelProvider(this).get(CoursesViewModel::class.java)
@@ -36,6 +47,7 @@ class CourseChapterListActivity : AppCompatActivity() {
 
     }
 
+    // load the courses into the adapter
     private fun loadDownloadedCourses() {
         val recyclerView = findViewById<RecyclerView>(R.id.courseRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -44,11 +56,12 @@ class CourseChapterListActivity : AppCompatActivity() {
                 loadURL(coursesEntity.captituloCursoURL)
             }
 
+            // the course will be setted as you have selected watched option
             override fun onClickWatched(coursesEntity: CoursesEntity, position: Int) {
                 databaseFunctions(this@CourseChapterListActivity).onClickChapterView(coursesEntity)
             }
 
-
+            // I'm getting the default listener and this function dont work in this adapter
             override fun onClickFav(coursesEntity: CoursesEntity, position: Int) {}
 
 
@@ -58,15 +71,15 @@ class CourseChapterListActivity : AppCompatActivity() {
 
 
         // load viewmodel
-
-        courseViewModel.getCourseChapterList()?.observe(this, Observer { course ->
+        courseViewModel.getCourseChapterList()?.observe(this, { course ->
             // Update the cached copy of the words in the adapter.
-            course?.let { adapter.setCourses(it) }
-
+            course?.let {
+                adapter.setCourses(it)
+            }
         })
 
         courseViewModel.getCourseChapter(course2load)
-
     }
+
 
 }

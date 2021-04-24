@@ -8,6 +8,7 @@
     <string name="supporting_text">Información adicional de la tarjeta</string>
     <string name="action_1">Ver</string>
     <string name="menu_recargar_cursos">Recargar Cursos</string>
+    <string name="menu_recargar_cursos_v2">Recargar Cursos Rápido</string>
     <string name="menu_buscar">Buscar</string>
     <string name="dialog_realizando_una_accion">Realizando una acción</string>
     <string name="dialog_msg_instalando_los_cursos">Instalando los cursos…</string>

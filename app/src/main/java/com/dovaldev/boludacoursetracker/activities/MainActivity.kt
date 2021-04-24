@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // go to list activity
         btnGoToCourses.setOnClickListener { goToActivity<CourseListActivity>() }
     }
 }

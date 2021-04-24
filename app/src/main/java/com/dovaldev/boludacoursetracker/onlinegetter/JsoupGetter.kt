@@ -11,6 +11,8 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
+
+/* first version of scrapper boluda.com */
 class JsoupGetter(var a: Activity? = null, var c: Context? = null) {
 
 

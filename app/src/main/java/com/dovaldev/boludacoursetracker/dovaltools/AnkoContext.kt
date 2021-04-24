@@ -7,6 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 
+
+/**
+ * Anko library for android-kotlin
+ */
+
 @DslMarker
 private annotation class AnkoContextDslMarker
 
@@ -96,7 +101,7 @@ open class AnkoContextImpl<T>(
         }
     }
 
-    open protected fun alreadyHasView(): Unit = throw IllegalStateException("View is already set: $myView")
+    protected open fun alreadyHasView(): Unit = throw IllegalStateException("View is already set: $myView")
 }
 
 

@@ -4,7 +4,6 @@ import androidx.room.*
 @Dao
 interface SavedCoursesDao{
 
-
     // get all courses nolive
     @get:Query("SELECT * FROM cursos_saved_table  ORDER BY captituloCursoURL ASC")
     val all_cursos: List<SavedCoursesEntity>

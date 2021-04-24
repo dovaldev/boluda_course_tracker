@@ -43,6 +43,10 @@ interface CoursesDao{
     @Query("SELECT * FROM cursos_table where captituloCursoURL = :urlChapter")
     fun getChapter(urlChapter: String?): List<CoursesEntity>
 
+    // get all courses
+    @Query("SELECT * FROM cursos_table where URLCurso = :urlCurso ORDER BY URLCurso ASC")
+    fun getUrlCursoNoLive(urlCurso: String?): List<CoursesEntity>
+
 
 
     // get item selected

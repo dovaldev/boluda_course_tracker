@@ -17,11 +17,13 @@ import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapter
 import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapterListener
 import com.dovaldev.boludacoursetracker.database.base.CoursesViewModel
+import com.dovaldev.boludacoursetracker.database.tools.Downloader
 import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
 import com.dovaldev.boludacoursetracker.database.tools.databaseInstaller
 import com.dovaldev.boludacoursetracker.dovaltools.*
 import com.dovaldev.boludacoursetracker.onlinegetter.JsoupGetter
 
+/* This activity show the courses list */
 class CourseListActivity : AppCompatActivity() {
 
     private lateinit var courseViewModel: CoursesViewModel
@@ -39,20 +41,25 @@ class CourseListActivity : AppCompatActivity() {
 
     }
 
+    // the courses are loaded into the adapter
     private fun loadDownloadedCourses(fav: Boolean) {
         val recyclerView = findViewById<RecyclerView>(R.id.courseRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = CoursesListAdapter(this, object : CoursesListAdapterListener {
             override fun onClick(coursesEntity: CoursesEntity, position: Int) {
                 Log.i("load", "course-> ${coursesEntity.nombreCurso}")
-                goToActivity<CourseChapterListActivity> { putExtra(course, coursesEntity.URLCurso) }
+                startActivity(intentFor<CourseChapterListActivity>(
+                    course to coursesEntity.URLCurso,
+                    courseTitle to coursesEntity.nombreCurso
+                ))
             }
 
+            // set the course watched or not
             override fun onClickWatched(coursesEntity: CoursesEntity, position: Int) {
                 doAsync { databaseFunctions(this@CourseListActivity).setCursoVisto(coursesEntity) }
 
             }
-
+            // add the course to favs
             override fun onClickFav(coursesEntity: CoursesEntity, position: Int) {
                 doAsync { databaseFunctions(this@CourseListActivity).setCursoFav(coursesEntity) }
             }
@@ -65,7 +72,7 @@ class CourseListActivity : AppCompatActivity() {
 
         // load viewmodel
 
-        courseViewModel.getCoursesList(fav)?.observe(this, Observer { course ->
+        courseViewModel.getCoursesList(fav)?.observe(this, { course ->
             // Update the cached copy of the words in the adapter.
             course?.let { adapter.setCourses(it) }
 
@@ -75,44 +82,9 @@ class CourseListActivity : AppCompatActivity() {
 
     }
 
-    private fun downloadOnlineCourses() {
-        // get the favourites and watched chapters
-        val dAfterInstall = dialogDownloadingCourses("Obteniendo", "Información de la base de datos, favoritos y capítulos vistos...")
-        doAsync {
-            databaseInstaller(this@CourseListActivity).afterInstall()
-            uiThread {
-                // cancel dialog doing
-                dAfterInstall.cancel()
-                // get the list and install the courses
-                val dInstalling = dialogDownloadingCourses()
-                dInstalling.show()
-                doAsync {
-                    // delete courses
-                    courseViewModel.deleteAll()
-                    // get and intall courses
-                    JsoupGetter(this@CourseListActivity).getCourseList(web_boluda)
-                    uiThread {
-                        // cancel dialog install courses
-                        dInstalling.cancel()
-                        // update the list with last viewed courses and favourites
-                        val dBeforeInstall = dialogDownloadingCourses("Actualizando", "Información de la base de datos, favoritos y capítulos vistos...")
-                        doAsync {
-                            databaseInstaller(this@CourseListActivity).beforeInstall()
-                            uiThread {
-                                dBeforeInstall.cancel()
-                                showToast("Todos los datos se han actualizado correctamente...")
-                            }
-                        }
 
-                    }
-                }
-            }
-        }
-    }
-
-
-    //=================================== MENU ==================================================================
-    //      MENU
+    // =================================== MENU ==================================================================
+    // MENU
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_courses, menu)
@@ -148,21 +120,29 @@ class CourseListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.itemId) {
+            // on click in fav button
             R.id.action_fav -> {
                 fav = !fav
                 loadDownloadedCourses(fav)
                 true
             }
-
+            // load intranet in explorer
             R.id.action_intranet -> {
                 loadURL(web_boluda_intranet)
                 true
             }
+
+            // install courses with version 1 (more slow)
             R.id.action_reload_courses -> {
-                downloadOnlineCourses()
+                Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCourses()
                 true
             }
 
+            // install courses with version 2 (more fast-testing)
+            R.id.action_reload_courses_v2 -> {
+                Downloader(this@CourseListActivity, courseViewModel).downloadOnlineCoursesV2()
+                true
+            }
 
             else -> super.onOptionsItemSelected(item)
         }

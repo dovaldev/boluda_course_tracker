@@ -19,8 +19,12 @@ inline fun <reified T : Activity> Activity.goToActivity(noinline init: Intent.()
     startActivity(intent)
 }
 
-// Dialogs
+inline fun <reified T: Any> Context.intentFor(vararg params: Pair<String, Any?>): Intent =
+    Internals.createIntent(this, T::class.java, params)
 
+
+// Dialogs
+// install courses
 fun Activity.dialogInstallCourses() {
     with(this) {
         val builder = AlertDialog.Builder(this)
@@ -42,6 +46,7 @@ fun Activity.dialogInstallCourses() {
     }
 }
 
+// dialog to show a message while the courses are installing
 fun Activity.dialogInstallingDatabase(): AlertDialog {
     val builder = AlertDialog.Builder(this)
     // Get the layout inflater
@@ -56,7 +61,7 @@ fun Activity.dialogInstallingDatabase(): AlertDialog {
     val dialog = builder.create()
     return dialog
 }
-
+// custom dialog to show a message while the courses are installing
 fun Activity.dialogDownloadingCourses(title: String? = null, msg:String? = null): AlertDialog {
     val builder = AlertDialog.Builder(this)
     // Get the layout inflater
