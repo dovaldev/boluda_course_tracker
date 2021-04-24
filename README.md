@@ -4,7 +4,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <p>Aplicación desarrollada por <a href="https://dovaldev.com"><strong>dovaldev</strong></a> para marcar todos los cursos vistos y favoritos de la web de <a href="https://boluda.com">boluda.com</a></p>
   
 <!-- DOVALDEV -->
-<p align="center">
+<div align="center">
   <h3 align="center">dovaldev</h3>
   <p align="center">
     Puedes encontrame en @dovaldev
@@ -16,7 +16,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
     ·
     <a href="https://github.com/dovaldev">GitHub</a>
   </p>
-</p>
+</div>
   
   
 <!-- ABOUT THE PROJECT -->
@@ -56,11 +56,12 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 </ul>
 
 
-## Desarrollado con <3
+## Desarrollado con ❤️
 
 He realizado este proyecto con android studio y kotlin como lenguaje de programación.
 * [Kotlin-android](https://kotlinlang.org/)
 * [Libreria JSOUP-android](#)
+* [Una porción de código de la Libreria Anko-android](#)
 
 
 <!-- LICENSE -->
