@@ -12,9 +12,9 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
     <a href="https://dovaldev.com"><strong>WEB</strong></a>
     <br />
     <br />
-    <a href="https://twitter.com/dovaldev">Twitter</a>
+    <a href="https://dovaldev.com/twitter">Twitter</a>
     ·
-    <a href="https://github.com/dovaldev">GitHub</a>
+    <a href="https://dovaldev.com/git">GitHub</a>
   </p>
 </div>
   
