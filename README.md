@@ -36,7 +36,7 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
  </p>
 
 <p>Hace unos meses que me aficioné a escuchar los podcast de <b>Joan Boluda</b>, razón por la que al final me he suscrito a sus cursos (inbound marketing). Ahora ante la imposibilidad de llevar un registro de los cursos vistos he realizado esta app que no publicaré en el market.</p>
-<p>El proyecto está realizado con mis conocimientos limitados de programación en Kotlin, usando código desarrollado por mi a lo largo de los años. Quizá encuentres alguna mejor forma de hacer algo, puedes contribuir si lo deseas.</p>
+<p>El proyecto está realizado con mis conocimientos limitados de programación en Kotlin, usando código desarrollado por mi a lo largo de los años. Quizá encuentres alguna mejor forma para que alguna cosa funcione mejor, sientete libre de contribuir si lo deseas.</p>
 
 <!-- INSTALL -->
 <p>Si quieres usarla e instalarla, tienes dos posibilidades:</p>
@@ -53,6 +53,14 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <li>Añadir recordatorio del minuto pausado el capitulo</li>
 <li>Opción para cargar los capítulos favoritos primero.</li>
 <li>...atento a sugerencias.</li>
+</ul>
+
+## Partes de código que no tiene
+<p>He realizado la app rápido y debido a ese motivo no le he puesto algunas comprobaciones:</p>
+<ul>
+    <li>La app no comprueba el estado de la red, si intentas instalar sin tener internet, puede que no descargue nada o dé algún error.</li>
+    <li>El adapter para mostrar cada tarjeta de curso, no está optimizado.</li>
+    <li>Algunas cosas mas...</li>
 </ul>
 
 
