@@ -19,4 +19,5 @@
     <string name="chapter_watched_yes">VISTO</string>
     <string name="chapter_watched_no">NO VISTO</string>
     <string name="menu_cursos_favoritos">Cursos favoritos</string>
+    <string name="curse_chapter_course_name">Course Name</string>
 </resources>
