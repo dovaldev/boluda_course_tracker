@@ -1,4 +1,4 @@
-package com.dovaldev.boludacoursetracker.dovaltools
+package com.dovaldev.boludacoursetracker.dovaltools.anko
 
 /**
  * Anko library for android-kotlin

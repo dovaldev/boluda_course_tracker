@@ -10,6 +10,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.dovaldev.boludacoursetracker.R
+import com.dovaldev.boludacoursetracker.dovaltools.anko.Internals
+import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
+import com.dovaldev.boludacoursetracker.dovaltools.anko.uiThread
 
 
 // go to selected activity
