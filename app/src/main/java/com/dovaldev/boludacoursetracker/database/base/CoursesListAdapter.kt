@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dovaldev.boludacoursetracker.R
-import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
+import com.dovaldev.boludacoursetracker.database.tools.DatabaseFunctions
 import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
 import com.dovaldev.boludacoursetracker.dovaltools.loadGlide
 import com.dovaldev.boludacoursetracker.dovaltools.anko.uiThread
@@ -66,7 +66,7 @@ class CoursesListAdapter internal constructor(
             )
         }
         doAsync {
-            val cursoVisto = databaseFunctions(context).getCursoVisto(item)
+            val cursoVisto = DatabaseFunctions(context).getCursoVisto(item)
             uiThread {
                 when (cursoVisto) {
                     true -> {
@@ -79,7 +79,7 @@ class CoursesListAdapter internal constructor(
             }
         }
         doAsync {
-            val cursoFav = databaseFunctions(context).getCursoFavorito(item)
+            val cursoFav = DatabaseFunctions(context).getCursoFavorito(item)
             uiThread {
                 when (cursoFav) {
                     true -> {

@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = arrayOf(SavedCoursesEntity::class), version = 1, exportSchema = false)
-public abstract class SavedCoursesRoomDatabase : RoomDatabase() {
+@Database(entities = arrayOf(SavedCoursesEntity::class), version = 2, exportSchema = false)
+abstract class SavedCoursesRoomDatabase : RoomDatabase() {
 
     abstract fun coursesDao(): SavedCoursesDao
 
@@ -26,7 +28,8 @@ public abstract class SavedCoursesRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     SavedCoursesRoomDatabase::class.java,
                     "cursos_saved_database"
-                ).build()
+                ).addMigrations(MIGRATION_1_2)
+                        .build()
                 INSTANCE = instance
                 return instance
             }

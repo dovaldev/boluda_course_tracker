@@ -2,7 +2,6 @@ package com.dovaldev.boludacoursetracker.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -17,7 +16,7 @@ import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapter
 import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapterListener
 import com.dovaldev.boludacoursetracker.database.base.CoursesViewModel
 import com.dovaldev.boludacoursetracker.database.tools.Downloader
-import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
+import com.dovaldev.boludacoursetracker.database.tools.DatabaseFunctions
 import com.dovaldev.boludacoursetracker.database.tools.databaseInstaller
 import com.dovaldev.boludacoursetracker.dovaltools.*
 import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
@@ -67,12 +66,16 @@ class CourseListActivity : AppCompatActivity() {
 
             // set the course watched or not
             override fun onClickWatched(coursesEntity: CoursesEntity, position: Int) {
-                doAsync { databaseFunctions(this@CourseListActivity).setCursoVisto(coursesEntity) }
+                doAsync { DatabaseFunctions(this@CourseListActivity).setCursoVisto(coursesEntity) }
 
             }
             // add the course to favs
             override fun onClickFav(coursesEntity: CoursesEntity, position: Int) {
-                doAsync { databaseFunctions(this@CourseListActivity).setCursoFav(coursesEntity) }
+                doAsync { DatabaseFunctions(this@CourseListActivity).setCursoFav(coursesEntity) }
+            }
+
+            override fun onClickTime(coursesEntity: CoursesEntity, position: Int) {
+               // not implemented
             }
 
 

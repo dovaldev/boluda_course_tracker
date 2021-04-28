@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dovaldev.boludacoursetracker.R
+import com.dovaldev.boludacoursetracker.dovaltools.setTwoDigitsFullTime
 
 class CourseChaptersListAdapter internal constructor(
     var context: Context,
@@ -22,6 +23,7 @@ class CourseChaptersListAdapter internal constructor(
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         val btnView: Button = itemView.findViewById(R.id.btnView)
         val btnMark: Button = itemView.findViewById(R.id.btnMark)
+        val btnTime: Button = itemView.findViewById(R.id.btnTime)
         val view = itemView.rootView
     }
 
@@ -52,6 +54,10 @@ class CourseChaptersListAdapter internal constructor(
                 holder.tvTitle.paintFlags = Paint.LINEAR_TEXT_FLAG
             }
         }
+        holder.btnTime.setOnClickListener {
+            coursesListAdapterListener.onClickTime(item, position)
+        }
+        holder.btnTime.text = item.tiempoGuardado.setTwoDigitsFullTime()
 
 
     }

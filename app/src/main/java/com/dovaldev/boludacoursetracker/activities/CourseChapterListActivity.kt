@@ -2,7 +2,6 @@ package com.dovaldev.boludacoursetracker.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,7 @@ import com.dovaldev.boludacoursetracker.database.base.CourseChaptersListAdapter
 import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesListAdapterListener
 import com.dovaldev.boludacoursetracker.database.base.CoursesViewModel
-import com.dovaldev.boludacoursetracker.database.tools.databaseFunctions
+import com.dovaldev.boludacoursetracker.database.tools.DatabaseFunctions
 import com.dovaldev.boludacoursetracker.dovaltools.*
 import kotlinx.android.synthetic.main.activity_course_chapter_list.*
 
@@ -47,6 +46,7 @@ class CourseChapterListActivity : AppCompatActivity() {
 
     }
 
+
     // load the courses into the adapter
     private fun loadDownloadedCourses() {
         val recyclerView = findViewById<RecyclerView>(R.id.courseRecyclerView)
@@ -58,11 +58,15 @@ class CourseChapterListActivity : AppCompatActivity() {
 
             // the course will be setted as you have selected watched option
             override fun onClickWatched(coursesEntity: CoursesEntity, position: Int) {
-                databaseFunctions(this@CourseChapterListActivity).onClickChapterView(coursesEntity)
+                DatabaseFunctions(this@CourseChapterListActivity).onClickChapterView(coursesEntity)
             }
 
             // I'm getting the default listener and this function dont work in this adapter
             override fun onClickFav(coursesEntity: CoursesEntity, position: Int) {}
+
+            override fun onClickTime(coursesEntity: CoursesEntity, position: Int) {
+                DatabaseFunctions(this@CourseChapterListActivity).onClickSaveTime(coursesEntity, this@CourseChapterListActivity)
+            }
 
 
         })

@@ -1,8 +1,6 @@
 package com.dovaldev.boludacoursetracker.database.tools
 
 import android.app.Activity
-import android.content.Context
-import android.util.Log
 import com.dovaldev.boludacoursetracker.database.backup.SavedCoursesEntity
 import com.dovaldev.boludacoursetracker.database.backup.SavedCoursesRoomDatabase
 import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
@@ -54,11 +52,12 @@ class databaseInstaller(var a: Activity) {
         for (item in actualList) {
             if (item.capituloVisto || item.cursoFavorito) {
                 savedCoursesDao.insert(
-                    SavedCoursesEntity(
-                        item.captituloCursoURL,
-                        item.capituloVisto,
-                        item.cursoFavorito
-                    )
+                        SavedCoursesEntity(
+                                item.captituloCursoURL,
+                                item.capituloVisto,
+                                item.cursoFavorito,
+                                item.tiempoGuardado
+                        )
                 )
             }
         }
@@ -81,6 +80,7 @@ class databaseInstaller(var a: Activity) {
                 val chapterEntity = curso.get(0)
                 chapterEntity.capituloVisto = savedItem.capituloVisto
                 chapterEntity.cursoFavorito = savedItem.cursoFavorito
+                chapterEntity.tiempoGuardado = savedItem.tiempoGuardado
                 coursesDao.update(chapterEntity)
             }
         }

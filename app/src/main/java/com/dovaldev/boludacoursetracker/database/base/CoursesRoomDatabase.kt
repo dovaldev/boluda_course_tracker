@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(CoursesEntity::class), version = 1, exportSchema = false)
-public abstract class CoursesRoomDatabase : RoomDatabase() {
+@Database(entities = [CoursesEntity::class], version = 2, exportSchema = false)
+abstract class CoursesRoomDatabase : RoomDatabase() {
 
     abstract fun coursesDao(): CoursesDao
 
@@ -26,7 +26,8 @@ public abstract class CoursesRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     CoursesRoomDatabase::class.java,
                     "cursos_database"
-                ).build()
+                ).addMigrations(MIGRATION_1_2)
+                        .build()
                 INSTANCE = instance
                 return instance
             }

@@ -32,4 +32,12 @@
     <string name="dialog_msg_install_cancel">Cancelar</string>
     <string name="course_list_lista_completa">Lista Completa</string>
     <string name="course_list_lista_fav">Lista Favoritos</string>
+    <string name="text_time_00_00">00:00</string>
+    <string name="dialog_time_lapse_donde_te_has_quedado">¿DONDE TE HAS QUEDADO?</string>
+    <string name="dialog_time_lapse_min_hint"> MIN </string>
+    <string name="dialog_time_lapse_sec_hint"> SEG </string>
+    <string name="dialog_time_lapse_separator">:</string>
+    <string name="dialog_time_lapse_seconds">SEGUNDOS</string>
+    <string name="dialog_time_lapse_minutes">MINUTOS</string>
+    <string name="toast_updated_time">Se ha actualizado el tiempo de visionado!</string>
 </resources>

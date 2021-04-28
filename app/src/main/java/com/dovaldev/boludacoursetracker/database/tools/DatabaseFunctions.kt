@@ -1,12 +1,16 @@
 package com.dovaldev.boludacoursetracker.database.tools
 
+import android.app.Activity
 import android.content.Context
-import android.util.Log
+import androidx.fragment.app.FragmentManager
 import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.database.base.CoursesRoomDatabase
 import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
+import com.dovaldev.boludacoursetracker.dovaltools.dialogSetTimeStatus
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
-class databaseFunctions(c: Context) {
+class DatabaseFunctions(c: Context, var a: Activity? = null) {
 
     private val coursesDao = CoursesRoomDatabase.getDatabase(c).coursesDao()
 
@@ -17,18 +21,28 @@ class databaseFunctions(c: Context) {
             val newEntity = entity
 
             when (entity.capituloVisto) {
-                true -> { newEntity.capituloVisto = false }
-                else -> { newEntity.capituloVisto = true }
+                true -> {
+                    newEntity.capituloVisto = false
+                }
+                else -> {
+                    newEntity.capituloVisto = true
+                }
             }
             coursesDao.update(newEntity)
             //Log.i("captitulo-visto", "${entity.capituloVisto} - ${newEntity.capituloVisto}")
         }
     }
 
+    // save the time selected by the user
+    fun onClickSaveTime(entity: CoursesEntity, activity: Activity) {
+        activity.dialogSetTimeStatus(entity, coursesDao)
+
+    }
+
 
     // dont used function
-    fun onClickCourseFavorite(entity: CoursesEntity){
-        when(entity.cursoFavorito){
+    fun onClickCourseFavorite(entity: CoursesEntity) {
+        when (entity.cursoFavorito) {
             true -> {
                 setCursoNoFavorito(entity)
             }
@@ -43,7 +57,7 @@ class databaseFunctions(c: Context) {
         val list = coursesDao.getCursoChapter_nolive(entity.URLCurso)
         var cursoVisto = true
         list.forEach {
-            if(!it.capituloVisto){
+            if (!it.capituloVisto) {
                 cursoVisto = false
             }
         }
@@ -53,11 +67,11 @@ class databaseFunctions(c: Context) {
         }
     }
 
-    fun getCursoVisto(entity: CoursesEntity): Boolean{
+    fun getCursoVisto(entity: CoursesEntity): Boolean {
         val list = coursesDao.getCursoChapter_nolive(entity.URLCurso)
         var cursoVisto = true
         list.forEach {
-            if(!it.capituloVisto){
+            if (!it.capituloVisto) {
                 cursoVisto = false
             }
         }
@@ -68,7 +82,7 @@ class databaseFunctions(c: Context) {
         val list = coursesDao.getCursoChapter_nolive(entity.URLCurso)
         var cursoFav = true
         list.forEach {
-            if(!it.cursoFavorito){
+            if (!it.cursoFavorito) {
                 cursoFav = false
             }
         }
@@ -79,7 +93,7 @@ class databaseFunctions(c: Context) {
         val list = coursesDao.getCursoChapter_nolive(entity.URLCurso)
         var cursoFav = true
         list.forEach {
-            if(!it.cursoFavorito){
+            if (!it.cursoFavorito) {
                 cursoFav = false
             }
         }
