@@ -17,16 +17,19 @@
     <string name="dialog_msg_descargando_los_cursos_title">Hola, estamos…</string>
     <string name="action_2">Marcar Visto</string>
     <string name="menu_intranet">Intranet</string>
+    <string name="menu_blog">Blog</string>
+    <string name="menu_wordpress_tutorial">Tutorial Wordpress</string>
+    <string name="menu_ir_a">Ir a…</string>
     <string name="chapter_watched_yes">VISTO</string>
     <string name="chapter_watched_no">NO VISTO</string>
     <string name="menu_cursos_favoritos">Cursos favoritos</string>
     <string name="curse_chapter_course_name">Course Name</string>
     <string name="action_bar_search">Buscar un curso</string>
     <string name="dialog_obtaining">Obteniendo</string>
-    <string name="dialog_obtaining_msg">Información de la base de datos, favoritos y capítulos vistos...</string>
+    <string name="dialog_obtaining_msg">Información de la base de datos, favoritos y capítulos vistos…</string>
     <string name="dialog_updating">Actualizando</string>
-    <string name="dialog_updating_msg">Información de la base de datos, favoritos y capítulos vistos...</string>
-    <string name="toast_all_data_updated">Todos los datos se han actualizado correctamente...</string>
+    <string name="dialog_updating_msg">Información de la base de datos, favoritos y capítulos vistos…</string>
+    <string name="toast_all_data_updated">Todos los datos se han actualizado correctamente…</string>
     <string name="dialog_msg_install">¿Quieres instalar y/o actualizar los cursos?</string>
     <string name="dialog_msg_install_ok">Instalar</string>
     <string name="dialog_msg_install_cancel">Cancelar</string>
@@ -40,4 +43,6 @@
     <string name="dialog_time_lapse_seconds">SEGUNDOS</string>
     <string name="dialog_time_lapse_minutes">MINUTOS</string>
     <string name="toast_updated_time">Se ha actualizado el tiempo de visionado!</string>
+    <string name="dialog_btn_reset">Reiniciar</string>
+    <string name="toast_reset_time">Se ha reseteado el tiempo del capítulo!</string>
 </resources>

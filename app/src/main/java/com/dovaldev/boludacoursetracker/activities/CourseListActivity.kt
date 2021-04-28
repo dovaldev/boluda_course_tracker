@@ -147,8 +147,8 @@ class CourseListActivity : AppCompatActivity() {
                 true
             }
             // load intranet in explorer
-            R.id.action_intranet -> {
-                loadURL(web_boluda_intranet)
+            R.id.action_ir_a -> {
+                dialogGoTo()
                 true
             }
 

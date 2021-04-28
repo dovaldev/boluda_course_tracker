@@ -67,6 +67,7 @@
             android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="10dp"
             android:text="@string/dialog_time_lapse_separator"
             android:textSize="50sp" />
 

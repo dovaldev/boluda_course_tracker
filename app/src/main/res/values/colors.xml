@@ -12,7 +12,7 @@
     <color name="boluda_blue_mark">#5FA6E3</color>
     <color name="boluda_blue_dark">#FFFFFF</color>
     <color name="boluda_gray">#32373C</color>
-    <color name="boluda_gray_ligth">#BABEC5</color>
+    <color name="boluda_gray_ligth">#FFFFFF</color>
     <color name="boluda_ligth">#ECECEC</color>
     <color name="boluda_red">#CA0F1D</color>
 </resources>

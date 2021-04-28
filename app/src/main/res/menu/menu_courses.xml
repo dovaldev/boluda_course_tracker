@@ -14,8 +14,8 @@
         android:icon="@drawable/ic_fav_white"
         app:showAsAction="ifRoom|collapseActionView"/>
     <item
-        android:id="@+id/action_intranet"
-        android:title="@string/menu_intranet"
+        android:id="@+id/action_ir_a"
+        android:title="@string/menu_ir_a"
         app:showAsAction="never"/>
 
     <item

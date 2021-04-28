@@ -16,6 +16,7 @@ import com.dovaldev.boludacoursetracker.database.base.CoursesEntity
 import com.dovaldev.boludacoursetracker.dovaltools.anko.Internals
 import com.dovaldev.boludacoursetracker.dovaltools.anko.doAsync
 import com.dovaldev.boludacoursetracker.dovaltools.anko.uiThread
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -64,14 +65,14 @@ fun Activity.dialogSetTimeStatus(entity: CoursesEntity, dao: CoursesDao) {
     val view = inflater.inflate(R.layout.dialog_time_lapse, null)
     val etMinutes = view.findViewById<TextInputEditText>(R.id.etMinutes)
     val etSeconds = view.findViewById<TextInputEditText>(R.id.etSeconds)
-    when{
+    when {
         time.min == "00" -> {
             etMinutes.hint = time.min
             etSeconds.hint = time.sec
         }
         time.min != "00" -> {
             etMinutes.setText(time.min)
-            etSeconds.setText(time.sec)
+            etSeconds.setText(time.sec.setZero())
         }
     }
 
@@ -81,18 +82,29 @@ fun Activity.dialogSetTimeStatus(entity: CoursesEntity, dao: CoursesDao) {
     builder
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 // update time entity
-                if(etMinutes.text!!.isNotEmpty() && etSeconds.text!!.isNotEmpty()){
-                    entity.tiempoGuardado = timeOfET(etMinutes, etSeconds)
-                    // save into dao
-                    doAsync {
-                        dao.update(entity)
-                        uiThread {
-                            showToast(getString(R.string.toast_updated_time))
-                        }
+                entity.tiempoGuardado = timeOfET(etMinutes, etSeconds)
+                // save into dao
+                doAsync {
+                    dao.update(entity)
+                    uiThread {
+                        showToast(getString(R.string.toast_updated_time))
                     }
                 }
+
             }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setNeutralButton(getString(R.string.dialog_btn_reset)) { dialog, _ ->
+                // update time entity
+                entity.tiempoGuardado = default_time
+                // save into dao
+                doAsync {
+                    dao.update(entity)
+                    uiThread {
+                        showToast(getString(R.string.toast_reset_time))
+                    }
+                }
                 dialog.dismiss()
             }
 
@@ -139,7 +151,27 @@ fun Activity.dialogDownloadingCourses(title: String? = null, msg: String? = null
     builder.setCancelable(false)
     val dialog = builder.create()
     return dialog
+}
 
+// Dialog Ir A -> en menu / ir a...
+fun Activity.dialogGoTo() {
+    val items = arrayOf(
+            resources.getString(R.string.menu_intranet),            // 0
+            resources.getString(R.string.menu_blog),                // 1
+            resources.getString(R.string.menu_wordpress_tutorial)   // 2
+    )
+
+    MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.menu_ir_a))
+            .setItems(items) { dialog, which ->
+                // Respond to item chosen
+                when (which) {
+                    0 -> loadURL(web_boluda_intranet)
+                    1 -> loadURL(web_boluda_blog)
+                    2 -> loadURL(web_boluda_curso_wordpress)
+                }
+            }
+            .show()
 }
 
 // Toast
@@ -164,31 +196,41 @@ fun Context.loadURL(url: String) {
 
 
 // database functions
-fun CoursesEntity.getTime(): CourseTime{
+fun CoursesEntity.getTime(): CourseTime {
     val time = this.tiempoGuardado
-    return if(time.isNotEmpty() && time.contains(":")) {
+    return if (time.isNotEmpty() && time.contains(":")) {
         CourseTime(time.split(":")[0].setTwoDigits(), time.split(":")[1].setTwoDigits())
     } else {
         CourseTime("00", "00")
     }
 }
 
-fun timeOfET(etMin: TextInputEditText, etSec: TextInputEditText): String{
-    return if(etMin.text!!.isNotEmpty() && etSec.text!!.isNotEmpty()){
-        "${etMin.text}:${etSec.text}"
+fun timeOfET(etMin: TextInputEditText, etSec: TextInputEditText): String {
+    return if (etMin.text!!.isNotEmpty() || etSec.text!!.isNotEmpty()) {
+        "${etMin.text.toString().setZero()}:${etSec.text.toString().setZero()}"
     } else {
         "00:00"
     }
 }
+
 fun String.setTwoDigits(): String {
-    return if(this.length == 1) {
+    return if (this.length == 1) {
         "0$this"
     } else {
         this
     }
 }
+
+fun String.setZero(): String {
+    return if (this.isEmpty()) {
+        "00"
+    } else {
+        this
+    }
+}
+
 fun String.setTwoDigitsFullTime(): String {
-    return if(this.contains(":")){
+    return if (this.contains(":")) {
         val time = this.split(":")
         "${time[0].setTwoDigits()}:${time[1].setTwoDigits()}"
     } else {
