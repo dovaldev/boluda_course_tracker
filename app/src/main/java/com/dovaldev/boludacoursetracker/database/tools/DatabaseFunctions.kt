@@ -26,6 +26,7 @@ class DatabaseFunctions(c: Context, var a: Activity? = null) {
                 }
                 else -> {
                     newEntity.capituloVisto = true
+                    newEntity.tiempoGuardado = "00:00"
                 }
             }
             coursesDao.update(newEntity)
