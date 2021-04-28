@@ -48,8 +48,14 @@ class CourseListActivity : AppCompatActivity() {
     private fun loadDownloadedCourses(fav: Boolean) {
         // set favourite or full list message
         when(fav){
-            true -> tvListTitle.text = getString(R.string.course_list_lista_fav)
-            false -> tvListTitle.text = getString(R.string.course_list_lista_completa)
+            true -> {
+                tvListTitle.text = getString(R.string.course_list_lista_fav)
+                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_yes,0, 0, 0)
+            }
+            false -> {
+                tvListTitle.text = getString(R.string.course_list_lista_completa)
+                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_no,0, 0, 0)
+            }
         }
 
         // load the recycler and show in adapter
