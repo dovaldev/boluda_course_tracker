@@ -22,7 +22,6 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 <!-- ABOUT THE PROJECT -->
 ## Sobre mi y el proyecto
 
-
 <p align="center">
     <a href="https://dovaldev.com">
       <img src="images/screenshot-check.png" alt="Screnshoot Checker" width="30%" height="30%">
@@ -46,11 +45,11 @@ Aplicación para gestionar los cursos de Boluda.com, marcarlos como vistos y mar
 </ul>
 
 ## Información
-<p>Estoy aprendiendo con todo esto y entiendo que el código es un poco lioso, intentaré pulir el código con las recomendaciones y sugerencias que me deis</p>
+<p>Estoy aprendiendo con todo esto y entiendo que el código es un poco lioso, intentaré pulir el código con las recomendaciones y sugerencias que me deis.</p>
+<p>Esta aplicación la uso para aprender a usar GitHub en un proyecto real, también por que cuando creo que necesito algo que me ayude a optimizar el tiempo, si puedo, lo creo. Además seguro que le sirve a alquien de ayuda.</p>
 
 ## Por añadir
 <ul>
-<li>Añadir recordatorio del minuto pausado el capitulo</li>
 <li>Opción para cargar los capítulos favoritos primero.</li>
 <li>...atento a sugerencias.</li>
 </ul>
