@@ -72,6 +72,15 @@ He realizado este proyecto con android studio y kotlin como lenguaje de programa
 * [Libreria JSOUP-android](#)
 * [Una porción de código de la Libreria Anko-android](#)
 
+<!-- VERSIONES -->
+## Versiones
+### 1.0.3
+<p>En esta versión he añadido:</p>
+<ul>
+  <li>Botón en el menu para ir a diferentes apartados de la web (Intranet, Blog y Tutorial WordPress)</li>
+  <li>Ahora puedes marcar el tiempo en el que te has quedado viendo el capítulo.</li>
+  <li>Se mejora un poco la interfaz.</li>
+</ul>
 
 <!-- LICENSE -->
 ## Licencia
