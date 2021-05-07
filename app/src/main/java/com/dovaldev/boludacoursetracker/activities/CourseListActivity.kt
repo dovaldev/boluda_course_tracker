@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,14 +48,14 @@ class CourseListActivity : AppCompatActivity() {
     // the courses are loaded into the adapter
     private fun loadDownloadedCourses(fav: Boolean) {
         // set favourite or full list message
-        when(fav){
+        when (fav) {
             true -> {
                 tvListTitle.text = getString(R.string.course_list_lista_fav)
-                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_yes,0, 0, 0)
+                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_yes, 0, 0, 0)
             }
             false -> {
                 tvListTitle.text = getString(R.string.course_list_lista_completa)
-                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_no,0, 0, 0)
+                tvListTitle.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_fav_no, 0, 0, 0)
             }
         }
 
@@ -65,8 +66,8 @@ class CourseListActivity : AppCompatActivity() {
             override fun onClick(coursesEntity: CoursesEntity, position: Int) {
                 //Log.i("load", "course-> ${coursesEntity.nombreCurso}")
                 startActivity(intentFor<CourseChapterListActivity>(
-                    course to coursesEntity.URLCurso,
-                    courseTitle to coursesEntity.nombreCurso
+                        course to coursesEntity.URLCurso,
+                        courseTitle to coursesEntity.nombreCurso
                 ))
             }
 
@@ -75,13 +76,14 @@ class CourseListActivity : AppCompatActivity() {
                 doAsync { DatabaseFunctions(this@CourseListActivity).setCursoVisto(coursesEntity) }
 
             }
+
             // add the course to favs
             override fun onClickFav(coursesEntity: CoursesEntity, position: Int) {
                 doAsync { DatabaseFunctions(this@CourseListActivity).setCursoFav(coursesEntity) }
             }
 
             override fun onClickTime(coursesEntity: CoursesEntity, position: Int) {
-               // not implemented
+                // not implemented
             }
 
 
@@ -92,15 +94,18 @@ class CourseListActivity : AppCompatActivity() {
 
         // load viewmodel
 
-        courseViewModel.getCoursesList(fav)?.observe(this, { course ->
+        courseViewModel.getCoursesList(fav)?.observe(this, Observer<List<CoursesEntity>> { course ->
             // Update the cached copy of the words in the adapter.
-            course?.let { adapter.setCourses(it) }
+            course?.let { adapter.setCourses(course) }
 
         })
 
         courseViewModel.get("")
 
     }
+
+    // get the advanced search status
+    private fun advancedSearch(): Boolean = Prefs(this).advanced_search
 
 
     // =================================== MENU ==================================================================
@@ -114,7 +119,20 @@ class CourseListActivity : AppCompatActivity() {
             val searchView = searchItem.actionView as SearchView
             val editext = searchView.findViewById<EditText>(R.id.search_src_text)
 
-            editext.hint = getString(R.string.action_bar_search)
+            editext.setOnLongClickListener {
+                if(Prefs(this).advanced_search_switch()){
+                    editext.hint = getString(R.string.action_bar_search_chapter)
+                } else {
+                    editext.hint = getString(R.string.action_bar_search)
+                }
+                true
+            }
+
+            when(advancedSearch()){
+                true -> editext.hint = getString(R.string.action_bar_search_chapter)
+                false -> editext.hint = getString(R.string.action_bar_search)
+            }
+
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -125,7 +143,7 @@ class CourseListActivity : AppCompatActivity() {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     //Log.i("onQueryTextChange", newText?:"no text")
                     if (newText!!.isNotEmpty()) {
-                        courseViewModel.get(newText)
+                        courseViewModel.get(newText, advancedSearch())
                     } else {
                         courseViewModel.get("")
                     }
@@ -169,7 +187,6 @@ class CourseListActivity : AppCompatActivity() {
 
                 true
             }
-
 
 
             else -> super.onOptionsItemSelected(item)

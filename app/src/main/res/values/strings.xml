@@ -25,6 +25,7 @@
     <string name="menu_cursos_favoritos">Cursos favoritos</string>
     <string name="curse_chapter_course_name">Course Name</string>
     <string name="action_bar_search">Buscar un curso</string>
+    <string name="action_bar_search_chapter">Buscar un curso o capítulo</string>
     <string name="dialog_obtaining">Obteniendo</string>
     <string name="dialog_obtaining_msg">Información de la base de datos, favoritos y capítulos vistos…</string>
     <string name="dialog_updating">Actualizando</string>

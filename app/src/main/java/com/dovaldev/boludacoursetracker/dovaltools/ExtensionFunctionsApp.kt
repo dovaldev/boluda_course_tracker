@@ -239,3 +239,4 @@ fun String.setTwoDigitsFullTime(): String {
 }
 
 data class CourseTime(var min: String, var sec: String)
+

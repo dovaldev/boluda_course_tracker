@@ -20,6 +20,10 @@ interface CoursesDao{
     fun getCurso(curso: String?): LiveData<List<CoursesEntity>>
 
     // get all courses
+    @Query("SELECT * FROM cursos_table where nombreCurso LIKE :curso OR capituloCurso LIKE :curso GROUP BY nombreCurso ORDER BY nombreCurso ASC")
+    fun getCursoSearchedAndChapters(curso: String?): LiveData<List<CoursesEntity>>
+
+    // get all courses and chapters
     @Query("SELECT * FROM cursos_table where nombreCurso LIKE :curso GROUP BY nombreCurso ORDER BY nombreCurso ASC")
     fun getCursoSearched(curso: String?): LiveData<List<CoursesEntity>>
 

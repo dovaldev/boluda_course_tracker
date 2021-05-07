@@ -2,6 +2,8 @@ package com.dovaldev.boludacoursetracker.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -75,7 +77,7 @@ class CourseChapterListActivity : AppCompatActivity() {
 
 
         // load viewmodel
-        courseViewModel.getCourseChapterList()?.observe(this, { course ->
+        courseViewModel.getCourseChapterList()?.observe(this, Observer<List<CoursesEntity>> { course ->
             // Update the cached copy of the words in the adapter.
             course?.let {
                 adapter.setCourses(it)
@@ -87,3 +89,4 @@ class CourseChapterListActivity : AppCompatActivity() {
 
 
 }
+

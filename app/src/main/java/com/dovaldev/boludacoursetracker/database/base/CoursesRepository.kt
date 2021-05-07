@@ -1,6 +1,7 @@
 package com.dovaldev.boludacoursetracker.database.base
 
 import android.os.AsyncTask
+import android.util.Log
 import androidx.lifecycle.LiveData
 
 class CoursesRepository(private val coursesDao: CoursesDao) {
@@ -18,6 +19,8 @@ class CoursesRepository(private val coursesDao: CoursesDao) {
     fun getCourseSearched(course: String, fav: Boolean): LiveData<List<CoursesEntity>>{
         return if(course.isNotEmpty()){
             coursesDao.getCursoSearched("%${course}%")
+        } else if(course.isNotEmpty()){
+            coursesDao.getCursoSearchedFav()
         } else if(fav){
             coursesDao.getCursoSearchedFav()
         } else{
@@ -25,6 +28,21 @@ class CoursesRepository(private val coursesDao: CoursesDao) {
         }
 
     }
+
+    fun getCourseSearched(course: String, fav: Boolean, advancedSearch: Boolean): LiveData<List<CoursesEntity>>{
+        Log.i("getCourseSearched", "course: $course ---> $advancedSearch")
+        return if(course.isNotEmpty() && !advancedSearch){
+            coursesDao.getCursoSearched("%${course}%")
+        } else if(course.isNotEmpty() && advancedSearch ){
+            coursesDao.getCursoSearchedAndChapters("%${course}%")
+        } else if(fav){
+            coursesDao.getCursoSearchedFav()
+        } else{
+            coursesDao.all_cursos
+        }
+
+    }
+
 
     // get course selected
     fun getCourseSelected(course: String): LiveData<List<CoursesEntity>>{

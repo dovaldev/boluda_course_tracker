@@ -15,6 +15,7 @@ class CoursesViewModel(application: Application) : AndroidViewModel(application)
     val allEntities_courses: LiveData<List<CoursesEntity>>
 
     private val seletedCourse: MutableLiveData<String> = MutableLiveData()
+    private var advancedSearch = false
 
     init {
         // Gets reference to WordDao from WordRoomDatabase to construct
@@ -26,18 +27,20 @@ class CoursesViewModel(application: Application) : AndroidViewModel(application)
 
         // course selected
         seletedCourse.value = ""
+        advancedSearch = false
     }
 
     fun getCoursesList(fav: Boolean): LiveData<List<CoursesEntity>>? {
         val list_seartch = Transformations.switchMap(seletedCourse) { searchCourse ->
-            repository.getCourseSearched(searchCourse, fav)
+            repository.getCourseSearched(searchCourse, fav, advancedSearch)
         }
         return list_seartch
     }
 
-    fun get(courseSearched: String){
+    fun get(courseSearched: String, advanced: Boolean = false){
         Log.i("search", courseSearched)
         seletedCourse.value = courseSearched
+        advancedSearch = advanced
     }
 
     fun getCourseChapterList(): LiveData<List<CoursesEntity>>? {
